@@ -1,0 +1,55 @@
+
+#adding a default active profile that will run when we start the application
+sping:
+  profile:
+    dev
+
+---   # Creating document with " --- "
+
+spring:
+  profiles : dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/departmentsringrestfuldb
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # Allowing all the endpoints for the Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/departmentsringrestfuldb-QA   # You have to add a different DB for every profile
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+
+---
+
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: ''
+    url: jdbc:mysql://localhost:3306/departmentsringrestfuldb-PROD   # You have to add a different DB for every profile
+    username: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
