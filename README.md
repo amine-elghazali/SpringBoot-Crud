@@ -1,2 +1,2 @@
 # SpringBoot-Crud
-Restful API using spring Boot. Managing CRUD operation Using OneToMany/ManyToOne relationShip 
+Restful API using spring Boot. Managing CRUD operations Using OneToMany/ManyToOne relationShip 
