@@ -1,7 +1,9 @@
 package com.bootSpring.Springboot.service;
 
 import com.bootSpring.Springboot.entity.Department;
+import com.bootSpring.Springboot.entity.School;
 import com.bootSpring.Springboot.repository.DepartmentRepository;
+import com.bootSpring.Springboot.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +15,22 @@ public class DepartmentServiceImpl implements DepartmentService{
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    @Autowired
+    private SchoolRepository schoolRepository;
+
     @Override
-    public Department saveDepartment(Department department) {
+    public Department saveDepartmentWithNewSchool(Department department) {
+        schoolRepository.save(department.getSchool());
         return departmentRepository.save(department);
     }
+
+    @Override
+    public Department saveDepartment(Department department, Long schoolId) {
+        School school = schoolRepository.findById(schoolId).get();
+        department.setSchool(school);
+        return departmentRepository.save(department);
+    }
+
 
     @Override
     public List<Department> fetchDepartmentList() {
@@ -34,10 +48,9 @@ public class DepartmentServiceImpl implements DepartmentService{
     }
 
     @Override
-    public Department updateDepartment(Long departmentId, Department department) {
+    public Department updateDepartment(Department department,Long departmentId) {
 
         // We can a validation if the element is not NULL , and != "", then we update , else we skip it
-
 
             Department depDB = departmentRepository.findById(departmentId).get();
             depDB.setDepartmentName( department.getDepartmentName() );

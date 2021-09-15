@@ -5,7 +5,9 @@ import com.bootSpring.Springboot.entity.Department;
 import java.util.List;
 
 public interface DepartmentService {
-    public Department saveDepartment(Department department);
+    public Department saveDepartmentWithNewSchool(Department department);
+
+    public Department saveDepartment(Department department, Long schoolId);
 
     public List<Department> fetchDepartmentList();
 
@@ -13,7 +15,8 @@ public interface DepartmentService {
 
     public void deleteDepartmentById(Long departmentId);
 
-    public Department updateDepartment(Long departmentId, Department department);
+    public Department updateDepartment(Department department,Long departmentId);
 
     public Department fetchDepartmentByName(String departmentName);
+
 }
